@@ -16,15 +16,20 @@ if (photoTrack) {
   const centerSlide = (index, behavior = 'smooth') => {
     if (!slides[index]) return;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) behavior = 'instant';
-    slides[index].scrollIntoView({behavior, block: 'nearest', inline: 'center'});
+    const trackBounds = photoTrack.getBoundingClientRect();
+    const slideBounds = slides[index].getBoundingClientRect();
+    const left = photoTrack.scrollLeft + slideBounds.left - trackBounds.left
+      - (photoTrack.clientWidth - slideBounds.width) / 2;
+    photoTrack.scrollTo({left, behavior});
   };
   const nearestIndex = () => {
-    const trackCenter = photoTrack.scrollLeft + photoTrack.clientWidth / 2;
-    return slides.reduce((best, slide, index) => {
-      const distance = Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - trackCenter);
-      const bestDistance = Math.abs(slides[best].offsetLeft + slides[best].offsetWidth / 2 - trackCenter);
-      return distance < bestDistance ? index : best;
-    }, 0);
+    const bounds = photoTrack.getBoundingClientRect();
+    const center = bounds.left + photoTrack.clientWidth / 2;
+    const distance = slide => {
+      const rect = slide.getBoundingClientRect();
+      return Math.abs(rect.left + rect.width / 2 - center);
+    };
+    return slides.reduce((best, slide, index) => distance(slide) < distance(slides[best]) ? index : best, 0);
   };
   const settleLoop = () => {
     clearTimeout(loopTimer);
