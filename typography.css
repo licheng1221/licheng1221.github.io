@@ -428,3 +428,13 @@ a { text-decoration-skip-ink: none; }
   .photo-slide-portrait .photo-place, .photo-slide-portrait .photo-location { display:inline; }
   .photo-slide-portrait .photo-place::after { content:', '; }
 }
+
+@media(min-width:721px) {
+  .photo-slide-portrait figcaption, .photo-slide-portrait:has(figcaption span) figcaption {
+    align-self: start;
+    margin-top: 0;
+    position: relative;
+    top: 72%;
+  }
+  .photo-slide-portrait figcaption span.photo-place { font-weight:400; }
+}
