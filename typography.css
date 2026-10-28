@@ -13,7 +13,8 @@
 }
 body { font-family: var(--sans); font-size: var(--text-body); line-height: 1.7; }
 button { font-family: inherit; }
-h1, h2, h3 { text-wrap: balance; }
+h1, h2 { text-wrap: balance; }
+h3 { text-wrap: wrap; }
 p, li { overflow-wrap: break-word; }
 .hero h1, .small-wonders-hero h1, .cv-intro h1 {
   font-size: var(--text-display); font-weight: 500; line-height: 1.12;
@@ -34,7 +35,7 @@ p, li { overflow-wrap: break-word; }
 }
 .bio { max-width: 62ch; margin-bottom: 18px; }
 .small-wonders-intro { max-width: 62ch; }
-.about-columns { display: block; max-width: 62ch; }
+.about-columns { display: block; }
 .about-columns p { margin-bottom: 20px; }
 .section-label > p, .section-label .research-note, .news-list time,
 .older-news summary, .publication-meta, .authors, .paper-links a,
@@ -117,13 +118,13 @@ p, li { overflow-wrap: break-word; }
   z-index: 30;
   background: #edf0e9;
   border: 0;
-  box-shadow: 0 8px 30px rgba(34,43,37,.085);
+  box-shadow: 0 10px 36px rgba(34,43,37,.09);
 }
 @supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
   .site-header {
-    background: rgba(237,240,233,.60);
-    -webkit-backdrop-filter: blur(16px) saturate(115%);
-    backdrop-filter: blur(16px) saturate(115%);
+    background: rgba(237,240,233,.38);
+    -webkit-backdrop-filter: blur(24px) saturate(135%);
+    backdrop-filter: blur(24px) saturate(135%);
   }
 }
 html { scroll-padding-top: 110px; }
@@ -188,8 +189,7 @@ html { scroll-padding-top: 110px; }
   font-weight: 500;
   letter-spacing: -.01em;
 }
-.bio, .news-list p, .about-columns p, .film-note > p,
-.cv-entry li, .cv-detail { max-width: 64ch; }
+.bio { max-width: 64ch; }
 .small-wonders-intro { max-width: 58ch; }
 .news-list li { align-items: baseline; }
 .news-list time { padding-top: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -197,7 +197,7 @@ html { scroll-padding-top: 110px; }
 .cv-date { margin-top: 0; }
 .cv-org { line-height: 1.6; }
 .section-label > p { max-width: 27ch; }
-.publication-list { max-width: 70ch; }
+.publication-list { max-width: none; }
 .publication { margin-bottom: 48px; padding: 0; }
 .publication:last-child { margin-bottom: 0; }
 .publication-meta {
@@ -265,7 +265,7 @@ html { scroll-padding-top: 110px; }
   width: 44px; height: 44px;
   border: 0; background: transparent; color: var(--muted);
 }
-.carousel-buttons button:hover { background: rgba(61,98,74,.07); color: var(--green); }
+.carousel-buttons button:hover { background-color: rgba(61,98,74,.07); color: var(--green); }
 .film-note { max-width: none; }
 .film-embed { background: var(--nav); border-radius: 3px; }
 .film-links .inline-link { border: 0; padding: 4px 0; }
@@ -275,10 +275,10 @@ a, button { transition: color .18s ease, background-color .18s ease; }
 a:hover { text-decoration-thickness: 1px; }
 .site-header nav a { border-radius: 5px; padding: 6px 9px; }
 .site-header nav { gap: 12px; }
-.site-header nav a:hover { background: rgba(61,98,74,.07); color: var(--green); text-decoration: none; }
-.site-header nav a[aria-current="page"] { color: var(--green); background: rgba(61,98,74,.06); font-weight: 500; }
+.site-header nav a:hover { background-color: rgba(61,98,74,.07); color: var(--green); text-decoration: none; }
+.site-header nav a[aria-current="page"] { color: var(--green); background-color: rgba(61,98,74,.06); font-weight: 500; }
 .header-icon, .email-icon { border-radius: 50%; }
-.header-icon:hover, .email-icon:hover { color: var(--green); background: rgba(61,98,74,.07); }
+.header-icon:hover, .email-icon:hover { color: var(--green); background-color: rgba(61,98,74,.07); }
 .older-news summary:hover { color: var(--green); }
 a:focus-visible, button:focus-visible, summary:focus-visible, .photo-track:focus-visible {
   outline: 2px solid var(--green); outline-offset: 4px;
@@ -311,7 +311,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .photo-track:focus
 .about .quiet-link, .film-links .quiet-link { display: inline-block; border: 0; padding: 4px 6px; margin-left: -6px; }
 .quiet-link:hover, .paper-links a:hover, .socials a:hover,
 .about .quiet-link:hover, .film-links .quiet-link:hover {
-  background: rgba(61,98,74,.07);
+  background-color: rgba(61,98,74,.07);
   color: var(--ink);
   text-decoration: none;
 }
@@ -331,14 +331,14 @@ a { text-decoration-skip-ink: none; }
   text-decoration-skip-ink: none;
 }
 .about .quiet-link {
-  background: rgba(61,98,74,.07);
+  background-color: rgba(61,98,74,.07);
   padding: 9px 14px;
   margin-left: 0;
   border-radius: 5px;
   text-decoration: none;
 }
 .about .quiet-link:hover {
-  background: rgba(61,98,74,.12);
+  background-color: rgba(61,98,74,.12);
   text-decoration: none;
 }
 
@@ -437,4 +437,102 @@ a { text-decoration-skip-ink: none; }
     top: 72%;
   }
   .photo-slide-portrait figcaption span.photo-place { font-weight:400; }
+}
+
+/* Personal CL leaf: B geometry with the subtle D palette. */
+.brand-leaf {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  background: url("assets/leaf.svg?v=cl1") center / contain no-repeat;
+  border-radius: 0;
+  transform: none;
+}
+
+/* A small desktop cursor; actionable controls retain the familiar hand. */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: url("assets/leaf-cursor.svg?v=cl1") 26 5, auto; }
+  a, button, summary, [role="button"] { cursor: pointer; }
+  input, textarea, [contenteditable="true"] { cursor: text; }
+  button:disabled, [aria-disabled="true"] { cursor: default; }
+}
+
+/* Light dry-brush highlights: organic edges with restrained texture. */
+.site-header nav a,
+.quiet-link, .paper-links a, .socials a,
+.about .quiet-link, .film-links .quiet-link,
+.header-icon, .email-icon {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 21px;
+  background-position: center calc(100% - 4px);
+}
+.site-header nav a:hover,
+.site-header nav a[aria-current="page"],
+.quiet-link:hover, .paper-links a:hover, .socials a:hover,
+.about .quiet-link, .about .quiet-link:hover,
+.film-links .quiet-link:hover,
+.header-icon:hover, .email-icon:hover {
+  background-color: transparent;
+  background-image: url("assets/brush-highlight.svg");
+}
+.site-header nav a[aria-current="page"]:hover,
+.about .quiet-link:hover {
+  background-image: url("assets/brush-highlight.svg");
+}
+.about .quiet-link {
+  padding: 5px 4px 8px;
+  margin-left: -4px;
+  border-radius: 0;
+  background-size: 100% 23px;
+  text-decoration: none;
+}
+.about .quiet-link:hover { color: var(--green); text-decoration: none; }
+@media (max-width:720px) {
+  .site-header nav a { background-size: 100% 19px; }
+}
+
+/* Compact CV entry titles and a clearer hierarchy for the film introduction. */
+.cv-entry h3 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -.01em;
+}
+.film-note > p {
+  font-size: var(--text-small);
+  line-height: 1.7;
+}
+.film-note > .film-context {
+  font-size: var(--text-body);
+  line-height: 1.7;
+}
+
+/* Film paragraphs follow the available page width on every screen. */
+.film-note > p { max-width: none; }
+
+/* Responsive text flows within its column; only long introductory copy keeps a reading measure. */
+.section-label, .small-wonders-heading, .cv-list, .cv-entry > div,
+.film-note, .publication-meta > span:first-child { min-width: 0; }
+.news-list p, .about-columns p, .cv-detail, .cv-entry li {
+  max-width: none;
+  white-space: normal;
+}
+h1, h2, h3, p, li, figcaption { word-break: normal; }
+a { overflow-wrap: anywhere; }
+.quiet-link, .paper-links a, .socials a { max-width: 100%; white-space: normal; }
+.cv-entry h3, .publication h3 { overflow-wrap: anywhere; }
+.language-list { flex-wrap: wrap; }
+
+/* Already highlighted links stay visually stable when hovered. */
+.about .quiet-link, .about .quiet-link:hover {
+  background-color: transparent;
+  background-image: url("assets/brush-highlight.svg");
+  color: var(--green);
+  text-decoration: none;
+  transition: none;
+}
+.about .quiet-link > span, .about .quiet-link:hover > span {
+  transform: none;
+  transition: none;
 }
